@@ -1,1 +1,17 @@
-
+apiVersion: v1
+kind: Pod
+metadata: 
+    name: devops-bank-pod-file
+    labels: 
+        app: devops-bank-pod-file
+        tier: frontend
+spec:
+   containers:
+    - name: bank-app
+      image: aaronhood/devopsbankapp:2.0
+      ports:
+      - containerPort: 80
+      resources: 
+        limits:
+          cpu: "2"
+          memory: "1Gi"
