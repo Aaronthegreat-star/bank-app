@@ -1,28 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-    name: devops-bank-deploy-file
-    labels: 
-        app: devops-bank-deploy-file
-        tier: frontend
-spec:
-  selector: 
-    labels:
+  name: devops-bank-deployment 
+  labels: 
     app: devops-bank-deploy-file
+    tier: frontend
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: devops-bank-deploy-file
   template:
     metadata: 
-     name: devops-bank-deploy-file
-     labels: 
+      name: devops-bank-deploy-file
+      labels: 
         app: devops-bank-deploy-file
         tier: frontend
     spec:
       containers:
       - name: bank-app
-      image: aaronhood/devopsbankapp:2.0
-      ports:
-      - containerPort: 80
-      resources: 
-        limits:
-          cpu: "2"
-          memory: "1Gi"
-  replicas: 3
+        image: aaronhood/devopsbankapp:2.0
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
