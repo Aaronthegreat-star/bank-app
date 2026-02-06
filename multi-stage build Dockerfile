@@ -6,7 +6,7 @@ RUN npm install
 RUN npm build
 
 #second stage of the build
-FROM nginx:1.19.0 As RUN
+FROM nginx:1.29.5 As RUN
 COPY --from=build /client/build /usr/share/nginx/html
 EXPOSE 80
 CMD["nginx", "-g", "daemon off"]
